@@ -20,12 +20,12 @@ void parse_comment (FILE * f) {
 }
 
 static
-void parse_problem (FILE * f, int * num_vars, int * num_clauses) {
-    fscanf(f, "p cnf %d %d", num_vars, num_clauses);
+void parse_problem (FILE * f, size_t * num_vars, size_t * num_clauses) {
+    fscanf(f, "p cnf %ld %ld", num_vars, num_clauses);
 }
 
 static
-void parse_clause (FILE * f, int * size_clause, int * vars) {
+void parse_clause (FILE * f, size_t * size_clause, int * vars) {
     (*size_clause) = 0;
 
     int var; fscanf(f, "%d", &var);
@@ -36,7 +36,7 @@ void parse_clause (FILE * f, int * size_clause, int * vars) {
     }
 }
 
-int dimacs_parse_header (FILE * src, int * num_vars, int * num_clauses) {
+int dimacs_parse_header (FILE * src, size_t * num_vars, size_t * num_clauses) {
     while (1) {
         skip_spaces(src);
         int c = fgetc(src);
@@ -51,7 +51,7 @@ int dimacs_parse_header (FILE * src, int * num_vars, int * num_clauses) {
     }
 }
 
-int dimacs_parse_next_clause (FILE * src, int * num_vars, int * vars) {
+int dimacs_parse_next_clause (FILE * src, size_t * num_vars, int * vars) {
     while (1) {
         skip_spaces(src);
         int c = fgetc(src);
