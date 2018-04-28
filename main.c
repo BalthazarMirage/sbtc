@@ -40,8 +40,8 @@ int main (int argc, char * argv[]) {
 	printf ("\n");
 	
 	for (size_t i = 0; i < translation_get_num_constraints(&translation); i++) {
-		int * beg = translation_get_domain_begin(&translation, i);
-		int * end = translation_get_domain_end(&translation, i);
+		int * beg = translation_get_constraint_begin(&translation, i);
+		int * end = translation_get_constraint_end(&translation, i);
 		
 		for (int * v = beg; v != end; v++) {
 			printf ("%d ", *v);

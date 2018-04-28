@@ -33,6 +33,6 @@ int * translation_get_constraint_begin (Translation * tls, size_t con) {
 	return tls->datas + tls->cons[con];
 }
 
-int * translation_get_constrain_end (Translation * tls, size_t con) {
+int * translation_get_constraint_end (Translation * tls, size_t con) {
 	return tls->datas + tls->cons[con+1];
 }
