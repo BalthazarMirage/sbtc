@@ -3,12 +3,22 @@
 
 #include <stdlib.h>
 
+size_t file_size (FILE * f) {
+	long int cur = ftell (f);
+	fseek (f, 0L, SEEK_END);
+	long int en = ftell (f);
+	fseek (f, cur, SEEK_SET);
+	return en - cur;
+}
+
 void cnf_import (Cnf * cnf, FILE * src) {
 	dimacs_parse_header (src, &cnf->num_vars, &cnf->num_clauses);
 	
+	size_t cap  = file_size(src) / 2;		// a upper bound of the size of the problem (in number of litterals)
+
 	cnf->clauses = malloc (
 		sizeof(size_t) * (cnf->num_clauses + 1) +
-		sizeof(int) * (cnf->num_clauses * cnf->num_vars)
+		sizeof(int) * cap
 	);
 	cnf->datas = (int *) (cnf->clauses + cnf->num_clauses + 1);
 	cnf->clauses[cnf->num_clauses] = 0;

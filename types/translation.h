@@ -4,9 +4,11 @@
 #include <stddef.h>
 
 enum {
-	TRANS_DIRECT,
-	TRANS_SUPPORT,
-	TRANS_KAD
+	TRANS_UNKNOW,		// the method of translation is not know
+	TRANS_IMPOSSIBLE,	// this translation is impossible to obtain
+	TRANS_DIRECT,		// translation used the direct method
+	TRANS_SUPPORT,		// translation used the support method
+	TRANS_KAD			// translation used the k-ad method
 };
 
 typedef struct {
